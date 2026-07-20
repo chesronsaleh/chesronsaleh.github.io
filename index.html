@@ -1,10 +1,493 @@
 <!DOCTYPE html>
-<html>
+<html lang="nl">
 <head>
-  <title>My Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chesron Saleh — Audio Visual Creator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0d10;
+    --bg-raised: #14171b;
+    --text: #ede9e0;
+    --text-dim: #9a9a92;
+    --amber: #e8a33d;
+    --teal: #3e5c57;
+    --line: #2a2d31;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .mono {
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.08em;
+  }
+
+  /* Sprocket strip divider — signature element */
+  .sprocket {
+    height: 28px;
+    background-image: repeating-linear-gradient(
+      to right,
+      transparent 0px, transparent 10px,
+      var(--line) 10px, var(--line) 22px,
+      transparent 22px, transparent 40px
+    );
+    background-position: center;
+    background-repeat: repeat-x;
+    background-size: 40px 10px;
+    display: flex;
+    align-items: center;
+    opacity: 0.55;
+  }
+
+  .timecode {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--amber);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.2rem;
+  }
+  .timecode::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background: var(--amber);
+    border-radius: 50%;
+    display: inline-block;
+    animation: blink 2s ease-in-out infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.25; }
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4rem 6vw;
+    background: linear-gradient(to bottom, rgba(11,13,16,0.95), transparent);
+  }
+
+  nav .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.1em;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2.2rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  nav ul li a {
+    color: var(--text-dim);
+    transition: color 0.2s;
+  }
+  nav ul li a:hover { color: var(--amber); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 6vw;
+    position: relative;
+  }
+
+  .hero .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.2rem, 11vw, 8.5rem);
+    line-height: 0.92;
+    letter-spacing: 0.01em;
+    color: var(--text);
+  }
+
+  .hero .role {
+    margin-top: 1.6rem;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: var(--text-dim);
+    font-weight: 500;
+    max-width: 40ch;
+  }
+
+  .hero .role span {
+    color: var(--amber);
+  }
+
+  .hero .scroll-cue {
+    position: absolute;
+    bottom: 3rem;
+    left: 6vw;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 0.15em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .scroll-cue .bar {
+    width: 1px;
+    height: 40px;
+    background: var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-cue .bar::after {
+    content: "";
+    position: absolute;
+    top: -40px;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: var(--amber);
+    animation: drip 1.8s ease-in-out infinite;
+  }
+  @keyframes drip {
+    0% { top: -40px; }
+    100% { top: 40px; }
+  }
+
+  section {
+    padding: 7rem 6vw;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  h2.section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: 0.02em;
+    margin-bottom: 2.5rem;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-grid p {
+    font-size: 1.1rem;
+    color: var(--text-dim);
+  }
+
+  .about-grid .stat-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  .stat {
+    border-left: 2px solid var(--amber);
+    padding-left: 1rem;
+  }
+  .stat .num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: var(--text);
+    display: block;
+  }
+  .stat .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  /* PROJECTS */
+  .project-card {
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  .project-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1.6rem 1.8rem 0.6rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .project-meta h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.7rem;
+    letter-spacing: 0.02em;
+  }
+
+  .project-meta .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--teal);
+    background: rgba(62,92,87,0.18);
+    border: 1px solid var(--teal);
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+    text-transform: uppercase;
+  }
+
+  .project-desc {
+    padding: 0.4rem 1.8rem 1.4rem;
+    color: var(--text-dim);
+    max-width: 65ch;
+  }
+
+  .video-frame {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    background: #000;
+  }
+  .video-frame iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: 0;
+  }
+
+  .project-card.placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 140px;
+    border-style: dashed;
+    color: var(--text-dim);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  /* SKILLS */
+  .skills-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+  }
+
+  .skill-pill {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+    border: 1px solid var(--line);
+    padding: 0.6rem 1.1rem;
+    border-radius: 2px;
+    color: var(--text);
+    background: var(--bg-raised);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .skill-pill:hover {
+    border-color: var(--amber);
+    color: var(--amber);
+  }
+
+  /* CONTACT */
+  .contact-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: baseline;
+    gap: 1.2rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid var(--line);
+    font-size: 1.3rem;
+  }
+
+  .contact-row .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    min-width: 90px;
+  }
+
+  .contact-row a:hover { color: var(--amber); }
+
+  footer {
+    padding: 3rem 6vw 2.5rem;
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 800px) {
+    nav ul { gap: 1.2rem; }
+    nav ul li:nth-child(n+4) { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  a:focus-visible, .skill-pill:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+  }
+</style>
 </head>
 <body>
-  <h1>Hi, I'm [Your Name]</h1>
-  <p>Welcome to my portfolio. This is where I'll show my projects.</p>
+
+<nav>
+  <div class="logo mono">CS<span style="color:var(--amber)">.</span></div>
+  <ul>
+    <li><a href="#about">Over mij</a></li>
+    <li><a href="#projects">Projecten</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="eyebrow mono">Showreel — Suriname</div>
+  <h1>CHESRON<br>SALEH</h1>
+  <p class="role">Audio Visual Creator <span>·</span> Filmmaker <span>·</span> Video Editor</p>
+  <div class="scroll-cue">
+    <div class="bar"></div>
+    SCROLL
+  </div>
+</header>
+
+<div class="sprocket"></div>
+
+<section id="about">
+  <div class="timecode">00:00:01 — Over mij</div>
+  <h2 class="section-title">De persoon achter de montage</h2>
+  <div class="about-grid">
+    <p>
+      Ik ben Chesron Saleh en ik ben gepassioneerd door video, filmen en creatieve content.
+      Ik hou ervan om ideeën tot leven te brengen door middel van beeld en montage.
+      In mijn vrije tijd houd ik van voetballen en gamen.
+    </p>
+    <div class="stat-block">
+      <div class="stat">
+        <span class="num">Adobe</span>
+        <span class="label">Premiere Pro · After Effects · Photoshop</span>
+      </div>
+      <div class="stat">
+        <span class="num">Reclame → Reel</span>
+        <span class="label">Van concept tot color grade</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sprocket"></div>
+
+<section id="projects">
+  <div class="timecode">00:00:02 — Projecten</div>
+  <h2 class="section-title">Geselecteerd werk</h2>
+
+  <div class="project-card">
+    <div class="project-meta">
+      <h3>Vitamine Water</h3>
+      <span class="tag">Reclamevideo</span>
+    </div>
+    <p class="project-desc">
+      Een korte reclamevideo voor een sportdrank, gemaakt als onderdeel van mijn afstudeerproject.
+    </p>
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/rOZYNVJVAM0" title="Vitamine Water — Chesron Saleh" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div class="project-card placeholder">
+    Meer projecten komen binnenkort online.
+  </div>
+</section>
+
+<div class="sprocket"></div>
+
+<section id="skills">
+  <div class="timecode">00:00:03 — Skills</div>
+  <h2 class="section-title">Tools &amp; vaardigheden</h2>
+  <div class="skills-strip">
+    <span class="skill-pill">Filmen</span>
+    <span class="skill-pill">Video-editing</span>
+    <span class="skill-pill">Adobe Premiere Pro</span>
+    <span class="skill-pill">Adobe After Effects</span>
+    <span class="skill-pill">Adobe Photoshop</span>
+    <span class="skill-pill">Color grading</span>
+    <span class="skill-pill">Storytelling</span>
+    <span class="skill-pill">Content creation</span>
+  </div>
+</section>
+
+<div class="sprocket"></div>
+
+<section id="contact">
+  <div class="timecode">00:00:04 — Contact</div>
+  <h2 class="section-title">Laten we samenwerken</h2>
+  <div class="contact-block">
+    <div class="contact-row">
+      <span class="label mono">Email</span>
+      <a href="mailto:chesronsaleh@gmail.com">chesronsaleh@gmail.com</a>
+    </div>
+    <div class="contact-row">
+      <span class="label mono">Telefoon</span>
+      <a href="tel:+5978438149">+597 843 8149</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Chesron Saleh — Audio Visual Creator
+</footer>
+
 </body>
 </html>
