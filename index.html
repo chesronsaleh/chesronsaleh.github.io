@@ -124,6 +124,23 @@
     position: relative;
   }
 
+  .hero-top {
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-photo {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--amber);
+    padding: 4px;
+    flex-shrink: 0;
+  }
+
   .hero .eyebrow {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.8rem;
@@ -394,7 +411,10 @@
 </nav>
 
 <header class="hero">
-  <div class="eyebrow mono">Showreel — Suriname</div>
+  <div class="hero-top">
+    <img src="images/chesronpic-thumb.jpg" alt="Chesron Saleh" class="hero-photo">
+    <div class="eyebrow mono">Showreel — Suriname</div>
+  </div>
   <h1>CHESRON<br>SALEH</h1>
   <p class="role">Audio Visual Creator <span>·</span> Filmmaker <span>·</span> Video Editor</p>
   <div class="scroll-cue">
@@ -412,7 +432,7 @@
     <p>
       Ik ben Chesron Saleh en ik ben gepassioneerd door video, filmen en creatieve content.
       Ik hou ervan om ideeën tot leven te brengen door middel van beeld en montage.
-      In mijn vrije tijd houd ik van voetballen en gamen.
+      In mijn vrije tijd hou ik van voetballen en gamen.
     </p>
     <div class="stat-block">
       <div class="stat">
